@@ -12,10 +12,12 @@
     "debug": "~2.2.0",
     "ejs": "~2.3.3",
     "express": "~4.13.1",
+    "gcloud": "^0.32.0",
     "morgan": "~1.6.1",
+    "nconf": "^0.8.4",
     "serve-favicon": "~2.3.0"
   },
   "engines": {
-  "node": "~4.2"
+    "node": "~4.2"
   }
 }

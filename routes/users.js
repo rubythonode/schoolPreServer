@@ -28,6 +28,7 @@ router.post('/signup', function (req, res, next) {
             console.log(err);
             return next(err);
         }
+        console.log(user)
         res.json(user)
     })
 })

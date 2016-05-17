@@ -5,7 +5,9 @@
 var gcloud = require('gcloud');
 var config = require('../config');
 var crypto = require('crypto');
+var jwt = require('jsonwebtoken');
 const secret = 'schoolPre';
+const jwtSecret = 'shcoolPre';
 
 var ds = gcloud.datastore({
     projectId: config.get('GCLOUD_PROJECT')
@@ -36,26 +38,21 @@ var kind = 'User';
 // data is automatically translated into Datastore format. The book will be
 // queued for background processing.
 // [START update]
-function update (id, data, cb) {
-    var key;
-    if (id) {
-        key = ds.key([kind, parseInt(id, 10)]);
-    } else {
-        key = ds.key(kind);
-    }
+function update (token ,data, cb) {
+    var findUserByTokenQuery = ds.createQuery(kind)
+        .filter('token', '=', token)
+        .limit(1)
 
-    var entity = {
-        key: key,
-        data: data
-    };
-
-    ds.save(
-        entity,
-        function (err) {
-            data.id = entity.key.id;
-            cb(err, err ? null : data);
-        }
-    );
+//업데이트 부분은 다시한번 document 참고
+        // ds.runQuery(findUserByTokenQuery, function (err, User) {
+        //     if(err) {
+        //         cb(err)
+        //     }
+        //     else {
+        //         User.name = data.name;
+        //         User.school = data.school;
+        //     }
+        // })
 }
 // [END update]
 
@@ -101,6 +98,7 @@ function create(data, cb) {
             data.pw = crypto.createHmac('sha256', secret)
                 .update(data.pw)
                 .digest('hex');
+            data.token = jwt.sign(data, jwtSecret);
             var entity = {
                 key: key,
                 data: data
@@ -118,6 +116,10 @@ function create(data, cb) {
 function signin(data, cb) {
 
     console.log(data)
+    data.pw = crypto.createHmac('sha256', secret)
+                .update(data.pw)
+                .digest('hex');
+    
     var query = ds.createQuery(kind)
         .filter('email', '=', data.email)
         .filter('pw', '=', data.pw)

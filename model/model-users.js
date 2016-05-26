@@ -78,7 +78,7 @@ function _delete (id, cb) {
 }
 
 
-function create(data, cb) {
+function signup (data, cb) {
     var key = ds.key(kind);
 
     console.log(data)
@@ -140,7 +140,7 @@ function signin(data, cb) {
 }
 // [START exports]
 module.exports = {
-    create: create,
+    signup: signup,
     read: read,
     update: update,
     delete: _delete,

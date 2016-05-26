@@ -8,6 +8,12 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+var firebase = require('firebase');
+firebase.initializeApp({
+  serviceAccount: "./schoolPre-3ea958f0a9d9.json",
+  databaseURL: "https://schoolpre-1302.firebaseio.com"
+})
+
 var app = express();
 
 // view engine setup

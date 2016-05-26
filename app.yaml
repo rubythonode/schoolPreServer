@@ -10,16 +10,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 # [START app_yaml]
-runtime: nodejs
+runtime: custom
 vm: true
-
 skip_files:
-  - ^(.*/)?.*/node_modules/.*$
+- ^(.*/)?.*/node_modules/.*$
 # [END app_yaml]
-
 threadsafe: true
-
 manual_scaling:
   instances: 1

@@ -207,18 +207,8 @@
                     }, null, '  ');
                     // [END_EXCLUDE]
                 } else {}
-                if (WebViewBridge) {
-
-                      WebViewBridge.onMessage = function (message) {
-                        if (message === "hello from react-native") {
-                          WebViewBridge.send("aa");
-                        }
-                      };
-
-                      WebViewBridge.send("aa");
-                    }
-                  }
             });
+        }
 
             function googleSignIn() {
                 if (!firebase.auth().currentUser) {
@@ -245,7 +235,7 @@
             initApp();
         };
         
-  (function () {
+        (function () {
                     if (WebViewBridge) {
 
                       WebViewBridge.onMessage = function (message) {

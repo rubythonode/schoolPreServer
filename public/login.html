@@ -197,7 +197,7 @@
                     var refreshToken = user.refreshToken;
                     var providerData = user.providerData;
                     // [START_EXCLUDE silent]
-                    // window.location="https://schooltestpre.herokuapp.com/users/loginComplete?uid=" + uid + "&provider=" + providerData[0].providerId + "&email=" + email;
+                    window.location="https://schooltestpre.herokuapp.com/users/loginComplete?uid=" + uid + "&provider=" + providerData[0].providerId + "&email=" + email;
                     console.log("https://schooltestpre.herokuapp.com/users/loginComplete?uid=" + uid + "&provider=" + providerData[0].providerId + "&email=" + email)
                     document.getElementById('quickstart-account-details').textContent = JSON.stringify({
                         displayName: displayName,

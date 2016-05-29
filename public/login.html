@@ -237,20 +237,6 @@
             initApp();
         };
         
-        (function () {
-            alert(1)
-            alert(WebViewBridge==undefined)
-                    if (WebViewBridge) {
-
-                      WebViewBridge.onMessage = function (message) {
-                        if (message === "hello from react-native") {
-                          WebViewBridge.send("got the message inside webview");
-                        }
-                      };
-
-                      WebViewBridge.send("hello from webview");
-                    }
-                  }());
     </script>
 </head>
 

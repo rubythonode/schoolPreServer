@@ -183,6 +183,7 @@
             // [START authstatelistener]
             document.getElementById('SignupButton').addEventListener('click', handleSignUp);
             document.getElementById('GoogleButton').addEventListener('click', googleSignIn);
+            
             firebase.auth().onAuthStateChanged(function(user) {
                 if (user) {
                     // User is signed in.
@@ -195,6 +196,7 @@
                     var refreshToken = user.refreshToken;
                     var providerData = user.providerData;
                     // [START_EXCLUDE silent]
+                    window.location="http://https://schooltestpre.herokuapp.com/users/loginComplete";
                     document.getElementById('quickstart-account-details').textContent = JSON.stringify({
                         displayName: displayName,
                         email: email,

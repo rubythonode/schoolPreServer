@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var modelLecture = require('./../model/model-users');
+var modelLecture = require('./../model/model-lecture-mongo');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -18,7 +18,7 @@ router.get('/:school/:lectureCode', function (req, res, next) {
 
     // 년도가 바뀌어도 lectureCode가 바뀌는지 안바뀌는지가 중요. 
     // 바뀐다면 안바뀌는건 무엇일까?  
-    var lecture = {
+    var lectureFindCondition = {
         school: req.param.school,
         lectureCode: req.param.school
     }
@@ -31,23 +31,18 @@ router.get('/:school/:lectureCode', function (req, res, next) {
     })
 });
 
-
-// 수업애 글쓰기. ex) 과제, 시험, 타임라인
-router.post('/:school/:lectureCode/homeWork', function (req, res, next) {
+router.post('/:school/:lectureCode/eval', function (req, res, next){
     var data = req.body;
 
-    console.log(req.body);
-    modelUser.update(data, function (err, user) {
-        if(err) {
-            console.log(err);
-            return next(err);
-        }
-        console.log(user)
-        res.json(user)
-    })
-});
+    var lectureFindCondition = {
+        school: req.param.school,
+        lectureCode: req.param.school
+    }
+})
 
-router.post('/:school/:lectureCode/test', function (req, res, next) {
+
+// 수업애 글쓰기. ex) 과제, 시험, 타임라인
+router.post('/:school/:lectureCode/timeLine', function (req, res, next) {
     var data = req.body;
 
     console.log(req.body);

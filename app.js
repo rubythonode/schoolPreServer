@@ -5,15 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-
-var firebase = require('firebase');
-firebase.initializeApp({
-  serviceAccount: "./schoolPre-3ea958f0a9d9.json",
-  databaseURL: "https://schoolpre-1302.firebaseio.com"
-})
-
 var app = express();
 
 // view engine setup
@@ -24,12 +15,21 @@ app.set('view engine', 'ejs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://admin:chaos6324@ds021943.mlab.com:21943/schooltest')
+
+
+var routes = require('./routes/index');
+var users = require('./routes/users');
+var lecture = require('./routes/lecture');
+
 app.use('/', routes);
 app.use('/users', users);
+app.use('/lecture', lecture);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
